@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/public/css/style.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <title>SWAPI</title>
+        <script>
+            $(document).ready(function(){
+                /* Event Listeners */
+                $('#peopleBtn').click(function(){
+                    requestData('/people');
+                });
+
+                $('#planetBtn').click(function(){
+                    requestData('/planets');
+                });
+                
+                $(document).on('click', '#nextBtn', function(){
+                    let url = $(this).attr('href');
+                    requestData(url);
+                });
+
+                $(document).on('click', '#prevBtn', function(){
+                    let url = $(this).attr('href');
+                    requestData(url);
+                });
+
+                $(document).on('click', '#getAll', function(){
+                    let url = $(this).attr('href');
+                    getAllData(url);
+                    $('#nextBtn').hide();
+                    $('#prevBtn').hide();
+                });
+
+                /* Prevents anchor tags to redirect when clicked */
+                $('a').click(function(event){
+                    event.preventDefault();
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div id="main-container">
+            <h1>Star Wars Wiki</h1>
+            <h2>What would you like to know more about?</h2>
+            <a class="btn" id="peopleBtn">People</a>
+            <a class="btn" id="planetBtn">Planets</a>
+            <div id="list">
+                <ul></ul>
+            </div>
+            <a class="btn" id="prevBtn" href="">Prev</a>
+            <a class="btn" id="getAll">Get all</a>
+            <a class="btn" id="nextBtn" href="">Next</a>
+        </div>
+    </body>
+    <script src="/public/js/main.js"></script>
+</html>
